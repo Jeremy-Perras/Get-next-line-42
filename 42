@@ -1,0 +1,7 @@
+Voici quelques impératifs à respecter :
+Contrairement à la fonction printf() originale, vous ne devez pas gérer de buffer.
+Vous devez gérer les conversions suivantes : cspdiuxX% 
+Votre rendu sera comparé à la fonction printf() originale.
+Vous devez utiliser la commande ar pour créer votre bibliothèque.
+L’utilisation de la commande libtool est interdite.
+Votre libftprintf.a doit être créé à la racine de votre dépôt
