@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:35:53 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/05 09:35:58 by jperras          ###   ########.fr       */
+/*   Updated: 2022/03/05 16:51:57 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
 char	*get_next_line(int fd);
 void	ft_strcpy(char *src, char *dest);
-char	*ft_read(int fd, char *str, int ret, char *buf);
-char	*ft_line(char *str);
+char	*ft_read(int fd, char *str, int iret, char *buf);
+char	*ft_line(char **str);
 #endif

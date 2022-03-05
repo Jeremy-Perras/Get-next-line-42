@@ -6,11 +6,12 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:54:04 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/05 09:48:31 by jperras          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:29:37 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 #include <stdio.h>
+
 void	ft_strcpy(char *src, char *dst)
 {	
 	int	i;
@@ -28,55 +29,79 @@ void	ft_strcpy(char *src, char *dst)
 	}
 	dst[i] = '\0';
 }
-
-char	*ft_read(int fd, char *str, int ret, char *buf)
+int	ft_strlen(char *str)
 {
-	int		j;
-	char	*buffer;
-
-	j = 1;
-	while (ret > 0 && buf[0] != '\n')
-	{
-		ft_strcpy(buf, str);
-		buffer = malloc(sizeof(char) * (j + 1));
-		buffer[0] = '\0';
-		ft_strcpy(str, buffer);
-		str = 0;
-		free(str);
-		j++;
-		str = malloc(sizeof(char) * (j + 1));
-		str[0] = '\0';
-		ft_strcpy(buffer, str);
-		buffer = 0;
-		free(buffer);
-		ret = read(fd, buf, 1);
-		buf[1] = '\0';
-	}
-	ret = read(fd, buf, 1);
-	buf[1] = '\0';
-	free(buffer);
-	if (ret > 0)
-		return(ft_line(str));
-	return (str);
-}
-
-char	*ft_line(char *str)
-{
-	char	*buffer;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while(str[i] != '\0')
 		i++;
-	buffer = malloc(sizeof(char) * (i + 1));
-	ft_strcpy(str, buffer);
-	str = 0;
-	free(str);
-	str = malloc(sizeof(char) * (i + 2));
-	ft_strcpy(buffer, str);
-	buffer = 0;
-	free(buffer);
-	str[i] = '\n';
-	str[i + 1] = '\0';
+	return (i);
+}
+
+char	*ft_strjoin(char *str1, char *str2)
+{
+	int		len;
+	char	*str3;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(str1) + ft_strlen(str2);
+	str3 = malloc(sizeof(char) * (len + 1));
+	if (str3 == NULL)
+		return (NULL);
+	while (str1[i] != '\0')
+	{
+		str3[i] = str1[i];
+		i++;
+	}
+	while (str2[j] != '\0')
+	{
+		str3[i] = str2[j];
+		i++;
+		j++;
+	}
+	str3[i] = '\0';
+	return (str3);	
+}
+
+char	*ft_read(int fd, char *str,int ret, char *buf)
+{
+	//int		j;
+	//char	buffer[1];
+	char	*tmp;
+
+	//j = 1;
+//	buffer[0]='\0';
+	while (ret > 0 && str[ft_strlen(str) - 1] != '\n')
+	{
+		//buffer = buf;
+		//ft_strcpy(buf, str);
+		//buffer = malloc(sizeof(char) * (j + 1));
+		//buffer[0] = '\0';
+		if (!*str)
+			ft_strcpy(buf, str);
+		else
+		{
+			tmp = str;
+			str = ft_strjoin(str, buf);
+			free(tmp);
+		}
+		
+		
+		//j++;
+		//str = malloc(sizeof(char) * (j + 1));
+		//if(str == NULL || buffer == NULL)
+		//	return(NULL);
+		//str[0] = '\0';
+		//ft_strcpy(buffer, str);
+		ret = read(fd, buf, 1);
+		buf[ret] = '\0';
+
+	}
+	//free(buffer);
 	return (str);
 }
+
