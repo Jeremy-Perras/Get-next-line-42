@@ -6,11 +6,10 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:54:04 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/05 17:34:03 by jperras          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:41 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-#include <stdio.h>
 
 void	ft_strcpy(char *src, char *dst)
 {	
