@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:54:04 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/05 17:29:37 by jperras          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:34:03 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -29,12 +29,13 @@ void	ft_strcpy(char *src, char *dst)
 	}
 	dst[i] = '\0';
 }
+
 int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -64,23 +65,15 @@ char	*ft_strjoin(char *str1, char *str2)
 		j++;
 	}
 	str3[i] = '\0';
-	return (str3);	
+	return (str3);
 }
 
-char	*ft_read(int fd, char *str,int ret, char *buf)
+char	*ft_read(int fd, char *str, int ret, char *buf)
 {
-	//int		j;
-	//char	buffer[1];
 	char	*tmp;
 
-	//j = 1;
-//	buffer[0]='\0';
 	while (ret > 0 && str[ft_strlen(str) - 1] != '\n')
 	{
-		//buffer = buf;
-		//ft_strcpy(buf, str);
-		//buffer = malloc(sizeof(char) * (j + 1));
-		//buffer[0] = '\0';
 		if (!*str)
 			ft_strcpy(buf, str);
 		else
@@ -89,19 +82,8 @@ char	*ft_read(int fd, char *str,int ret, char *buf)
 			str = ft_strjoin(str, buf);
 			free(tmp);
 		}
-		
-		
-		//j++;
-		//str = malloc(sizeof(char) * (j + 1));
-		//if(str == NULL || buffer == NULL)
-		//	return(NULL);
-		//str[0] = '\0';
-		//ft_strcpy(buffer, str);
 		ret = read(fd, buf, 1);
 		buf[ret] = '\0';
-
 	}
-	//free(buffer);
 	return (str);
 }
-
